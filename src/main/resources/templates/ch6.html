@@ -1,1 +1,20 @@
-6ch
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+    <meta charset="utf-8">
+    <title>６ちゃんねる</title>
+</head>
+
+<body>
+    <a href="/logout">ログアウト</a>
+
+    <h2>Online Users</h2>
+
+    <ul>
+        <li th:each="users:${users1}">[[${users.user}]]</li>
+    </ul>
+
+</body>
+
+</html>
