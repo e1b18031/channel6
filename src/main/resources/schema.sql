@@ -1,4 +1,4 @@
 CREATE TABLE users (
     id IDENTITY,
-    name CHAR NOT NULL
+    user CHAR NOT NULL
 );
