@@ -23,9 +23,13 @@ public class Ch6AuthConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
     // $ sshrun htpasswd -nbBC 10 user1 pAssw0rd
-    auth.inMemoryAuthentication().withUser("user1")
+    auth.inMemoryAuthentication().withUser("うえだ")
         .password("$2y$10$rJ9yqGht2W96MdIJICRQQOuUiYrt2eDokKnDuZZof2DPs83PN6QdC").roles("USER");
-    auth.inMemoryAuthentication().withUser("user2")
+    auth.inMemoryAuthentication().withUser("おおはら")
+        .password("$2y$10$rJ9yqGht2W96MdIJICRQQOuUiYrt2eDokKnDuZZof2DPs83PN6QdC").roles("USER");
+    auth.inMemoryAuthentication().withUser("くぼた")
+        .password("$2y$10$rJ9yqGht2W96MdIJICRQQOuUiYrt2eDokKnDuZZof2DPs83PN6QdC").roles("USER");
+    auth.inMemoryAuthentication().withUser("たけもり")
         .password("$2y$10$rJ9yqGht2W96MdIJICRQQOuUiYrt2eDokKnDuZZof2DPs83PN6QdC").roles("USER");
     auth.inMemoryAuthentication().withUser("admin")
         .password("$2y$10$rJ9yqGht2W96MdIJICRQQOuUiYrt2eDokKnDuZZof2DPs83PN6QdC").roles("ADMIN");
@@ -53,7 +57,7 @@ public class Ch6AuthConfiguration extends WebSecurityConfigurerAdapter {
     // antMatchers().authenticated がantMatchersへのアクセスに認証を行うことを示す
     // antMatchers()の他にanyRequest()と書くとあらゆるアクセス先を表現できる
     // authenticated()の代わりにpermitAll()と書くと認証処理が不要であることを示す
-    http.authorizeRequests().antMatchers("/ch6.html/**").authenticated();
+    http.authorizeRequests().antMatchers("/ch6/**").authenticated();
     // http.authorizeRequests().anyRequest().authenticated();
     /**
      * 以下2行はh2-consoleを利用するための設定なので，開発が完了したらコメントアウトすることが望ましい
