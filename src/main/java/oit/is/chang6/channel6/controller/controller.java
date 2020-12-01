@@ -25,4 +25,12 @@ public class controller {
     model.addAttribute("users1",Users1);
     return "ch6.html";
   }
+
+  @PostMapping
+  public String ch6chat(@RequestParam String word, ModelMap model) {
+
+    model.addAttribute("word", word);
+    return "ch6.html";
+  }
+
 }
