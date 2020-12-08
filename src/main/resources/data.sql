@@ -1,7 +1,7 @@
-INSERT INTO users (id,user) VALUES (1, 'うえだ');
-INSERT INTO users (id,user) VALUES (2, 'おおはら');
-INSERT INTO users (id,user) VALUES (3, 'くぼた');
-INSERT INTO users (id,user) VALUES (4, 'たけもり');
+INSERT INTO users (id,user,room) VALUES (1, 'うえだ',0);
+INSERT INTO users (id,user,room) VALUES (2, 'おおはら',0);
+INSERT INTO users (id,user,room) VALUES (3, 'くぼた',0);
+INSERT INTO users (id,user,room) VALUES (4, 'たけもり',0);
 
 INSERT INTO rooms (id) VALUES (1);
 INSERT INTO rooms (id) VALUES (2);

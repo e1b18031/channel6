@@ -3,6 +3,7 @@ package oit.is.chang6.channel6.model;
 public class Users{
     int id;
     String user;
+    int room;
 
     public Users() {}
 
@@ -20,6 +21,14 @@ public class Users{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getRoom(){
+        return room;
+    }
+
+    public void setRoom(int room){
+        this.room = room;
     }
 }
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,8 +43,20 @@ public class controller {
     String loginUser = prin.getName();
     model.addAttribute("users1", Users1);
     model.addAttribute("loginUser", loginUser);
+    return "lobby.html";
+  }
+
+  @GetMapping("lobbystep")
+  @Transactional
+  public String lobbystep(@RequestParam Integer number, /*ModelMap model,*/ Principal prin) {
+    String loginUser = prin.getName(); // ログインユーザ情報
+    Users user1 = usersMapper.selectByUser(loginUser);
+    user1.setRoom(number);
+    usersMapper.updateById(user1);
+    //model.addAttribute("user1", user1);
     return "ch6.html";
   }
+
 
   @GetMapping("chatstep")
   public SseEmitter chatstep() {
