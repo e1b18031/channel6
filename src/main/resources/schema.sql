@@ -1,6 +1,7 @@
 CREATE TABLE users (
     id IDENTITY,
-    user CHAR NOT NULL
+    user CHAR NOT NULL,
+    room INT NOT NULL
 );
 CREATE TABLE rooms (
   id IDENTITY
