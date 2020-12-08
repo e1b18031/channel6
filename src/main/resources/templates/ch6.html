@@ -3,7 +3,32 @@
 
 <head>
   <meta charset="utf-8">
-  <title>６ちゃんねる</title>
+  <title>room6</title>
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/ch6/chatstep');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage")
+        console.log(event.data);
+        var tbody = document.getElementById("word_list");
+        var word_list = JSON.parse(event.data);//JSONオブジェクトとしてparse
+        var word_table = "";
+        // DBに残っているチャットのリストがJSONオブジェクトとして得られるので，htmlを作成し，tbodyの中身毎入れ替える
+        for (var i = 0; i < word_list.length; i++) {
+          var bgn_tr = "<tr>";
+          var end_tr = "</tr>";
+          var idx = "<td>" + i + "</td>";
+          var w_user = "<td>" + word_list[i].user + "</td>";
+          var w_word = "<td>" + word_list[i].word + "</td>";
+          word_table = word_table + bgn_tr + idx + w_user + w_word + end_tr;
+
+        }
+        console.log(word_table);
+        tbody.innerHTML = word_table;
+
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -22,11 +47,24 @@
   </form>
   </p>
 
-  <div>
-    <span th:if="${word}">
-      [[${word}]]
-    </span>
 
+  <div>
+    <table border="1">
+      <thead>
+        <th>index</th>
+        <th>名前</th>
+        <th>発言</th>
+      </thead>
+      <tbody id="word_list">
+        <span th:if="${word_list}">
+          <tr th:each="word,stat:${word_list}">
+            <td>[[${stat.index}]]</td>
+            <td>[[${word.user}]]</td>
+            <td>[[${word.word}]]</td>
+          </tr>
+        </span>
+      </tbody>
+    </table>
   </div>
 
 </body>
