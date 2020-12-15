@@ -46,6 +46,16 @@ public class controller {
     return "lobby.html";
   }
 
+  @GetMapping("backlobby")
+  public String backlobby(Principal prin, ModelMap model) {
+    String loginUser = prin.getName();
+    Users user1 = usersMapper.selectByUser(prin.getName());
+    user1.setRoom(0);
+    usersMapper.updateById(user1);
+    model.addAttribute("loginUser", loginUser);
+    return "lobby.html";
+  }
+
   @GetMapping("lobbystep")
   @Transactional
   public String lobbystep(@RequestParam Integer number, /* ModelMap model, */ Principal prin) {
