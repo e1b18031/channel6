@@ -48,14 +48,13 @@ public class controller {
 
   @GetMapping("lobbystep")
   @Transactional
-  public String lobbystep(@RequestParam Integer number, /*ModelMap model,*/ Principal prin) {
+  public String lobbystep(@RequestParam Integer number, /* ModelMap model, */ Principal prin) {
     String loginUser = prin.getName(); // ログインユーザ情報
     Users user1 = usersMapper.selectByUser(loginUser);
     user1.setRoom(number);
     usersMapper.updateById(user1);
     return "ch6.html";
   }
-
 
   @GetMapping("chatstep")
   public SseEmitter chatstep() {
@@ -65,15 +64,16 @@ public class controller {
   }
 
   @PostMapping
-  public String ch6chat(@RequestParam String word, ModelMap model,Principal prin) {
+  public String ch6chat(@RequestParam String word, ModelMap model, Principal prin) {
+    Users user1 = usersMapper.selectByUser(prin.getName());
     Word word1 = new Word();
     word1.setId(0);
-    word1.setRoom(6);
-    word1.setUser(prin.getName());
+    word1.setRoom(user1.getRoom());
+    word1.setUser(user1.getUser());
     word1.setWord(word);
     Chat6.syncChatInsert(word1);
 
-    final ArrayList<Word> word_list = wordMapper.selectByRoom(6);
+    final ArrayList<Word> word_list = wordMapper.selectByRoom(user1.getRoom());
     model.addAttribute("word_list", word_list);
     return "ch6.html";
   }
