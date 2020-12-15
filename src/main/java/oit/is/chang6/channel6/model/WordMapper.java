@@ -18,5 +18,6 @@ public interface WordMapper {
   @Insert("INSERT INTO word (room, user,word) VALUES (#{room},#{user},#{word});")
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
   void insertWord(Word word);
+  
 
 }
