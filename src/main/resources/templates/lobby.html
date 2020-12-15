@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
 <head>
-    <meta charset="utf-8">
-    <title>Channel6 Lobby</title>
+  <meta charset="utf-8">
+  <title>Channel6 Lobby</title>
 </head>
 
 <body>
-    <h1>ようこそ！ <span sec:authentication="name"></span>
-    </h1>
-    <a href="/logout">ログアウト</a>
+  <h1>ようこそ！ <span sec:authentication="name"></span>
+  </h1>
+  <a href="/logout">ログアウト</a>
 
-    <div>
-        数字で入室する小屋番号を入力してください
-        <form th:action="@{/ch6/lobbystep}" method="get">
-            <input type="number" name="number" min="1" max="6" />
-            <input type="submit" value="入室"><input type="reset" value="リセット">
-        </form>
-    </div>
+  <div>
+    数字で入室する小屋番号を入力してください
+    <form th:action="@{/ch6/lobbystep}" method="get">
+      <input type="number" name="number" min="1" max="6" />
+      <input type="submit" value="入室"><input type="reset" value="リセット">
+    </form>
+  </div>
 </body>

@@ -53,7 +53,6 @@ public class controller {
     Users user1 = usersMapper.selectByUser(loginUser);
     user1.setRoom(number);
     usersMapper.updateById(user1);
-    //model.addAttribute("user1", user1);
     return "ch6.html";
   }
 
@@ -66,11 +65,11 @@ public class controller {
   }
 
   @PostMapping
-  public String ch6chat(@RequestParam String word, ModelMap model) {
+  public String ch6chat(@RequestParam String word, ModelMap model,Principal prin) {
     Word word1 = new Word();
     word1.setId(0);
     word1.setRoom(6);
-    word1.setUser("うえだ");
+    word1.setUser(prin.getName());
     word1.setWord(word);
     Chat6.syncChatInsert(word1);
 
