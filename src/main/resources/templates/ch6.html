@@ -34,7 +34,7 @@
 <body>
   <a href="/logout">ログアウト</a><br/>
   <a th:href="@{/ch6/backlobby}">ロビーに戻る</a>
-  <h2>Online Users</h2>
+  <h2>ルーム[[${room}]]にいます</h2>
 
   <ul>
     <li th:each="users:${users1}">[[${users.user}]]</li>

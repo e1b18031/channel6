@@ -58,11 +58,14 @@ public class controller {
 
   @GetMapping("lobbystep")
   @Transactional
-  public String lobbystep(@RequestParam Integer number, /* ModelMap model, */ Principal prin) {
+  public String lobbystep(@RequestParam Integer number,  ModelMap model, Principal prin) {
     String loginUser = prin.getName(); // ログインユーザ情報
     Users user1 = usersMapper.selectByUser(loginUser);
     user1.setRoom(number);
     usersMapper.updateById(user1);
+    ArrayList<Users> Users1 = usersMapper.selectByRoom(number);
+    model.addAttribute("users1",Users1);
+    model.addAttribute("room",number);
     return "ch6.html";
   }
 
@@ -82,6 +85,10 @@ public class controller {
     word1.setUser(user1.getUser());
     word1.setWord(word);
     Chat6.syncChatInsert(word1);
+
+    ArrayList<Users> Users1 = usersMapper.selectByRoom(user1.getRoom());
+    model.addAttribute("users1",Users1);
+    model.addAttribute("room",user1.getRoom());
 
     final ArrayList<Word> word_list = wordMapper.selectByRoom(user1.getRoom());
     model.addAttribute("word_list", word_list);
