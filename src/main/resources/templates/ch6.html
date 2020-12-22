@@ -10,21 +10,21 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage")
         console.log(event.data);
-        var tbody = document.getElementById("word_list");
+        var chat = document.getElementById("chat");
         var word_list = JSON.parse(event.data);//JSONオブジェクトとしてparse
         var word_table = "";
         // DBに残っているチャットのリストがJSONオブジェクトとして得られるので，htmlを作成し，tbodyの中身毎入れ替える
         for (var i = 0; i < word_list.length; i++) {
-          var bgn_tr = "<tr>";
-          var end_tr = "</tr>";
-          var idx = "<td>" + i + "</td>";
-          var w_user = "<td>" + word_list[i].user + "</td>";
-          var w_word = "<td>" + word_list[i].word + "</td>";
-          word_table = word_table + bgn_tr + idx + w_user + w_word + end_tr;
+          var bgn_p = "<p>";
+          var end_p = "</p>";
+          var idx = "index:" + i;
+          var w_user = "名前:" + word_list[i].user;
+          var w_word = "<br/>発言:" + word_list[i].word;
+          word_table = word_table + bgn_p + idx + w_user + w_word + end_p;
 
         }
         console.log(word_table);
-        tbody.innerHTML = word_table;
+        chat.innerHTML = word_table;
 
       }
     }
@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  <a href="/logout">ログアウト</a><br/>
+  <a href="/logout">ログアウト</a><br />
   <a th:href="@{/ch6/backlobby}">ロビーに戻る</a>
   <h2>ルーム[[${room}]]にいます</h2>
 
@@ -47,26 +47,14 @@
   </form>
   </p>
 
+  <div id="chat">
+    <p th:each="word,stat:${word_list}">
+      index:[[${stat.index}]]
+      名前:[[${word.user}]]
+      <br>発言:[[${word.word}]]
+    </p>
 
-  <div>
-    <table border="1">
-      <thead>
-        <th>index</th>
-        <th>名前</th>
-        <th>発言</th>
-      </thead>
-      <tbody id="word_list">
-        <span th:if="${word_list}">
-          <tr th:each="word,stat:${word_list}">
-            <td>[[${stat.index}]]</td>
-            <td>[[${word.user}]]</td>
-            <td>[[${word.word}]]</td>
-          </tr>
-        </span>
-      </tbody>
-    </table>
   </div>
-
 </body>
 
 </html>
