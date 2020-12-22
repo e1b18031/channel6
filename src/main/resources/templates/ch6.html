@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>room6</title>
+  <link href="/css/sample.css" rel="stylesheet" type="text/css">
   <script>
     window.onload = function () {
       var sse = new EventSource('/ch6/chatstep');
@@ -19,9 +20,8 @@
           var end_p = "</p>";
           var idx = "index:" + i;
           var w_user = "名前:" + word_list[i].user;
-          var w_word = "<br/>発言:" + word_list[i].word;
+          var w_word = "<br>発言:" + word_list[i].word;
           word_table = word_table + bgn_p + idx + w_user + w_word + end_p;
-
         }
         console.log(word_table);
         chat.innerHTML = word_table;
@@ -31,29 +31,41 @@
   </script>
 </head>
 
-<body>
-  <a href="/logout">ログアウト</a><br />
-  <a th:href="@{/ch6/backlobby}">ロビーに戻る</a>
-  <h2>ルーム[[${room}]]にいます</h2>
+<body bgcolor="#00bfff">
+  <header>
+    <p>6ちゃんねる</p>
+  </header>
+  <div class="wrapper">
+    <p><a href="/logout"><img th:src="@{/images/logout.png}" width="25" height="25">ログアウト</a></p>
+    <p><a th:href="@{/ch6/backlobby}"><img th:src="@{/images/turnback.png}" width="25" height="25">ロビーに戻る</a></p>
 
-  <ul>
-    <li th:each="users:${users1}">[[${users.user}]]</li>
-  </ul>
+    <div id="member">
+      <h3>入室状況</h3>
+      <ul>
+        <li th:each="users:${users1}">[[${users.user}]]</li>
+      </ul>
+    </div>
 
-  <p>
-  <form th:action="@{/ch6}" method="post">
-    <input type="text" name="word" />
-    <input type="submit" value="投稿">
-  </form>
-  </p>
+    <div id="chat">
+      <h2>ルーム[[${room}]] 雑談</h2>
+      <p th:each="word,stat:${word_list}">
+        index:[[${stat.index}]]
+        名前:[[${word.user}]]
+        <br>発言:[[${word.word}]]
+      </p>
+      <hr width="90%" align="center">
+      <h3>書き込み</h3>
+      <p>
+      <form th:action="@{/ch6}" method="post">
+        <input type="text" name="word" />
+        <input type="submit" value="投稿">
+      </form>
+      </p>
+    </div>
 
-  <div id="chat">
-    <p th:each="word,stat:${word_list}">
-      index:[[${stat.index}]]
-      名前:[[${word.user}]]
-      <br>発言:[[${word.word}]]
-    </p>
-
+    <footer>
+      <p>Presented By 我々はチーム名を考えていませんでした</p>
+    </footer>
   </div>
 </body>
 

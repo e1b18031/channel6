@@ -8,9 +8,12 @@
 </head>
 
 <body bgcolor="00bfff" background="images/hato.png">
-  <h1>ようこそ！ <span sec:authentication="name"></span>
-  </h1>
-  <a href="/logout">ログアウト</a>
+  <header>
+    <p>6ちゃんねる</p>
+  </header>
+
+  <a href="/logout"><img th:src="@{/images/logout.png}" width="25" height="25">ログアウト</a><br />
+  <h1>ようこそ！ <span sec:authentication="name"></span></h1>
 
   <div>
     <font size="5">
@@ -21,4 +24,7 @@
       <input type="submit" value="入室"><input type="reset" value="リセット">
     </form>
   </div>
+  <footer>
+    <p>Presented By 我々はチーム名を考えていませんでした</p>
+  </footer>
 </body>
