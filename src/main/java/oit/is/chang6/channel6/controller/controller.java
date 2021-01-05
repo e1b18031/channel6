@@ -69,6 +69,8 @@ public class controller {
     ArrayList<Users> Users1 = usersMapper.selectByRoom(number);
     model.addAttribute("users1", Users1);
     model.addAttribute("room", number);
+    final ArrayList<Word> word_list = wordMapper.selectByRoom(user1.getRoom());
+    model.addAttribute("word_list", word_list);
     return "ch6.html";
   }
 
@@ -79,12 +81,23 @@ public class controller {
     return sseEmitter;
   }
 
+  @GetMapping("reload")
+  public String reload(ModelMap model, Principal prin) {
+    Users user1 = usersMapper.selectByUser(prin.getName());
+    ArrayList<Users> Users1 = usersMapper.selectByRoom(user1.getRoom());
+    model.addAttribute("users1", Users1);
+    model.addAttribute("room", user1.getRoom());
+    final ArrayList<Word> word_list = wordMapper.selectByRoom(user1.getRoom());
+    model.addAttribute("word_list", word_list);
+    return "ch6.html";
+  }
+
   @PostMapping
   public String ch6chat(@RequestParam String word, ModelMap model, Principal prin) {
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
     String str = sdf.format(timestamp);
-    //model.addAttribute("time", str);
+    // model.addAttribute("time", str);
 
     Users user1 = usersMapper.selectByUser(prin.getName());
     Word word1 = new Word();
@@ -101,7 +114,6 @@ public class controller {
 
     final ArrayList<Word> word_list = wordMapper.selectByRoom(user1.getRoom());
     model.addAttribute("word_list", word_list);
-
 
     return "ch6.html";
 
