@@ -11,6 +11,7 @@ CREATE TABLE word (
   id IDENTITY,
   room INT NOT NULL,
   user CHAR NOT NULL,
+  time CHAR NOT NULL,
   word CHAR NOT NULL
 
 );

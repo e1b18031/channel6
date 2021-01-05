@@ -15,9 +15,9 @@ public interface WordMapper {
   @Select("SELECT * from word where room = #{room}")
   ArrayList<Word> selectByRoom(int room);
 
-  @Insert("INSERT INTO word (room, user,word) VALUES (#{room},#{user},#{word});")
+  @Insert("INSERT INTO word (room, user,time,word) VALUES (#{room},#{user},#{time},#{word});")
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
   void insertWord(Word word);
-  
+
 
 }
