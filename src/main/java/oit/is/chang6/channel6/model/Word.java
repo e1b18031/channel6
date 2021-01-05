@@ -4,6 +4,7 @@ public class Word {
   int id;
   int room;
   String user;
+  String time;
   String word;
 
   public int getId() {
@@ -36,6 +37,14 @@ public class Word {
 
   public void setWord(String word) {
     this.word = word;
+  }
+
+  public String getTime() {
+    return time;
+  }
+
+  public void setTime(String time) {
+    this.time = time;
   }
 
 }

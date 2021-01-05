@@ -81,11 +81,17 @@ public class controller {
 
   @PostMapping
   public String ch6chat(@RequestParam String word, ModelMap model, Principal prin) {
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+    String str = sdf.format(timestamp);
+    //model.addAttribute("time", str);
+
     Users user1 = usersMapper.selectByUser(prin.getName());
     Word word1 = new Word();
     word1.setId(0);
     word1.setRoom(user1.getRoom());
     word1.setUser(user1.getUser());
+    word1.setTime(str);
     word1.setWord(word);
     Chat6.syncChatInsert(word1);
 
@@ -96,11 +102,7 @@ public class controller {
     final ArrayList<Word> word_list = wordMapper.selectByRoom(user1.getRoom());
     model.addAttribute("word_list", word_list);
 
-    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-    String str = sdf.format(timestamp);
 
-    model.addAttribute("time", str);
     return "ch6.html";
 
   }

@@ -20,8 +20,9 @@
           var end_p = "</p>";
           var idx = "index:" + i;
           var w_user = "名前:" + word_list[i].user;
+          var w_time = "時刻:" + word_list[i].time;
           var w_word = "<br>発言:" + word_list[i].word;
-          word_table = word_table + bgn_p + idx + w_user + w_word + end_p;
+          word_table = word_table + bgn_p + idx + w_user + w_time + w_word + end_p;
         }
         console.log(word_table);
         chat.innerHTML = word_table;
@@ -51,7 +52,7 @@
       <p th:each="word,stat:${word_list}">
         index:[[${stat.index}]]
         名前:[[${word.user}]]
-        時刻:[[${time}]]
+        時刻:[[${word.time}]]
         <br>発言:[[${word.word}]]
       </p>
       <hr width="90%" align="center">
