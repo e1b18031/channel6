@@ -22,6 +22,9 @@ import oit.is.chang6.channel6.model.Word;
 import oit.is.chang6.channel6.model.WordMapper;
 import oit.is.chang6.channel6.service.AsyncChatService;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 @Controller
 @RequestMapping("/ch6")
 public class controller {
@@ -92,7 +95,14 @@ public class controller {
 
     final ArrayList<Word> word_list = wordMapper.selectByRoom(user1.getRoom());
     model.addAttribute("word_list", word_list);
+
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+    String str = sdf.format(timestamp);
+
+    model.addAttribute("time", str);
     return "ch6.html";
+
   }
 
 }
