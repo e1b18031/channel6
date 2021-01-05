@@ -47,6 +47,12 @@
       </ul>
     </div>
 
+    <div>
+      <a target="_BLANK" th:href="'https://twitter.com/intent/tweet?text=%E3%83%AB%E3%83%BC%E3%83%A0'+${room}+'%20%E9%9B%91%E8%AB%87%0Ahttp%3A%2F%2F150.89.233.206%3A8080%2Fch6%2Flobbystep%3Fnumber%3D1'" style>
+        <img th:src="@{/images/twitter.png}" width="50" height="50">
+      </a>
+    </div>
+
     <div id="chat">
       <h2>ルーム[[${room}]] 雑談</h2>
       <p th:each="word,stat:${word_list}">
