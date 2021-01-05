@@ -20,7 +20,7 @@
           var end_p = "</p>";
           var idx = "index:" + i;
           var w_user = "名前:" + word_list[i].user;
-          var w_time = "時刻:" + word_list[i].time;
+          var w_time = "時刻(UTC):" + word_list[i].time;
           var w_word = "<br>発言:" + word_list[i].word;
           word_table = word_table + bgn_p + idx + w_user + w_time + w_word + end_p;
         }
@@ -48,7 +48,7 @@
     </div>
 
     <div>
-      <a target="_BLANK" th:href="'https://twitter.com/intent/tweet?text=%E3%83%AB%E3%83%BC%E3%83%A0'+${room}+'%20%E9%9B%91%E8%AB%87%0Ahttp%3A%2F%2F150.89.233.206%3A8080%2Fch6%2Flobbystep%3Fnumber%3D1'" style>
+      <a target="_BLANK" th:href="'https://twitter.com/intent/tweet?text=%E3%83%AB%E3%83%BC%E3%83%A0'+${room}+'%20%E9%9B%91%E8%AB%87%0A&url=http%3A%2F%2F150.89.233.206%3A8080%2Fch6%2Flobbystep%3Fnumber%3D' + ${room}" style>
         <img th:src="@{/images/twitter.png}" width="50" height="50">
       </a>
     </div>
@@ -58,7 +58,7 @@
       <p th:each="word,stat:${word_list}">
         index:[[${stat.index}]]
         名前:[[${word.user}]]
-        時刻:[[${word.time}]]
+        時刻(UTC):[[${word.time}]]
         <br>発言:[[${word.word}]]
       </p>
       <hr width="90%" align="center">
