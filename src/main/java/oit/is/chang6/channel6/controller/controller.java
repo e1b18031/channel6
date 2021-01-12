@@ -2,6 +2,7 @@ package oit.is.chang6.channel6.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -96,6 +97,7 @@ public class controller {
   public String ch6chat(@RequestParam String word, ModelMap model, Principal prin) {
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+    sdf.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
     String str = sdf.format(timestamp);
     // model.addAttribute("time", str);
 
